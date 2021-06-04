@@ -36,7 +36,7 @@ public class LoginBean {
  
     public String validateUserLogin() {
         String navResult = "";
-        System.out.println("Entered Username is= " + userName + ", password is= " + password);
+        //System.out.println("Entered Username is= " + userName + ", password is= " + password);
         if (userName.equalsIgnoreCase("admin") && password.equals("password")) {
             navResult = "success";
         } else {

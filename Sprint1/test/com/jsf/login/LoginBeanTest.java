@@ -5,10 +5,8 @@
  */
 package com.jsf.login;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -18,27 +16,18 @@ public class LoginBeanTest {
     
     public LoginBeanTest() {
     }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
 
     /**
      * Test of getUserName method, of class LoginBean.
      */
     @Test
     public void testGetUserName() {
-        System.out.println("getUserName");
+        System.out.println("getUserName test");
         LoginBean instance = new LoginBean();
-        String expResult = "";
+        String expResult = "user";
+        instance.setUserName("user");
         String result = instance.getUserName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result); 
     }
 
     /**
@@ -46,12 +35,11 @@ public class LoginBeanTest {
      */
     @Test
     public void testSetUserName() {
-        System.out.println("setUserName");
-        String userName = "";
+        System.out.println("setUserName test");
+        String userName = "john";
         LoginBean instance = new LoginBean();
         instance.setUserName(userName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(userName, instance.getUserName());
     }
 
     /**
@@ -59,13 +47,12 @@ public class LoginBeanTest {
      */
     @Test
     public void testGetPassword() {
-        System.out.println("getPassword");
+        System.out.println("getPassword test");
         LoginBean instance = new LoginBean();
-        String expResult = "";
+        String expResult = "password1";
+        instance.setPassword("password1");
         String result = instance.getPassword();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -73,12 +60,11 @@ public class LoginBeanTest {
      */
     @Test
     public void testSetPassword() {
-        System.out.println("setPassword");
-        String password = "";
+        System.out.println("setPassword test");
+        String password = "pass1!#";
         LoginBean instance = new LoginBean();
         instance.setPassword(password);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(password, instance.getPassword());
     }
 
     /**
@@ -86,13 +72,25 @@ public class LoginBeanTest {
      */
     @Test
     public void testValidateUserLogin() {
-        System.out.println("validateUserLogin");
+        System.out.println("validateUserLogin test");
         LoginBean instance = new LoginBean();
-        String expResult = "";
+        instance.setUserName("admin");
+        instance.setPassword("password");
+        String expResult = "success";
         String result = instance.validateUserLogin();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        instance.setUserName("admin");
+        instance.setPassword("passwrd");
+        expResult = "failure";
+        result = instance.validateUserLogin();
+        assertEquals(expResult, result);
+        
+        instance.setUserName("adn");
+        instance.setPassword("password");
+        expResult = "failure";
+        result = instance.validateUserLogin();
+        assertEquals(expResult, result);
     }
     
 }
