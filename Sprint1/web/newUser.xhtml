@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Create New Account</title>
+        <style type="text/css">
+        .textPlacement {
+            margin: 12px;
+        }
+        </style>
+    </h:head>
+    <h:body>
+        <h2>Sign up for an account here</h2>
+        <h:form id="loginForm">
+            
+            <div id="userNameDiv" class="textPlacement">
+                <h:outputLabel value="Username: " />
+                <h:inputText value="#{newAccountBean.userName}" />
+            </div>
+            <div id="passwordDiv" class="textPlacement">
+                <h:outputLabel value="Password: " />
+                <h:inputText value="#{newAccountBean.password}" />
+            </div>
+            <div id="passwordConfirmDiv" class="textPlacement">
+                <h:outputLabel value="Re-type Password: " />
+                <h:inputText value="#{newAccountBean.password}" />
+            </div>
+            <div id="newActBtn" class="textPlacement">
+                <h:commandButton value="Create New Account" action="#{newAccountBean.addNewUser()}" />
+            </div>
+            
+        </h:form>
+    </h:body>
+</html>

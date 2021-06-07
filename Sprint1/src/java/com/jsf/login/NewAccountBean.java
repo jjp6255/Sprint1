@@ -5,29 +5,27 @@
  */
 package com.jsf.login;
 
-/**
- *
- * @author josephpriolo
- */
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.jsf.connection.ConnectionBean;
 
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.ResultSet;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
- 
+/**
+ *
+ * @author josephpriolo
+ */
 @ManagedBean @SessionScoped
-public class LoginBean {
- 
+public class NewAccountBean {
+    
     private String userName;
     private String password;
- 
+    
     public String getUserName() {
         return userName;
     }
@@ -43,11 +41,11 @@ public class LoginBean {
     public void setPassword(String password) {
         this.password = password;
     }
- 
-    public String validateUserLogin() throws ClassNotFoundException {
+    
+    public String addNewUser() throws ClassNotFoundException {
         String navResult = "";
-       
-        String query = "SELECT userName, password FROM userCredential WHERE userName = ? and password = ?";
+        
+        String query = "INSERT INTO userCredential (userName, password) VALUES (?, ?)";
         PreparedStatement ps = null;
         
         Connection cn = ConnectionBean.databaseConnect();
@@ -58,22 +56,23 @@ public class LoginBean {
                 ps = cn.prepareStatement(query);
                 ps.setString(1, userName);
                 ps.setString(2, password);
-                ResultSet rs = ps.executeQuery();
-                if (rs.next())
+                int row = 0;
+                row = ps.executeUpdate();
+                if (row == 1)
                 {
-                    navResult = "success";
-                } else{
-                    navResult = "failure";
+                    navResult = "successfulAccount";
+                    //System.out.println(row);
                 }
                 cn.close();
             } catch (SQLException ex) {
                 Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+                navResult = "failedAccount";
             }
             
-        } else{
-            navResult = "failure";
+        } else {
+            navResult = "failedAccount";
         }
-
+        
         return navResult;
-    }
+     }
 }

@@ -12,19 +12,20 @@ import static org.junit.Assert.*;
  *
  * @author josephpriolo
  */
-public class LoginBeanTest {
+public class NewAccountBeanTest {
     
-    public LoginBeanTest() {
+    public NewAccountBeanTest() {
     }
 
     /**
-     * Test of getUserName method, of class LoginBean.
+     * Test of getUserName method, of class NewAccountBean.
      */
     @Test
     public void testGetUserName() {
         System.out.println("getUserName test");
         System.out.println("-----------------------");
-        LoginBean instance = new LoginBean();
+        
+        NewAccountBean instance = new NewAccountBean();
         
         System.out.println("testGetUserName success case");
         String expResult = "user";
@@ -54,7 +55,7 @@ public class LoginBeanTest {
     }
 
     /**
-     * Test of setUserName method, of class LoginBean.
+     * Test of setUserName method, of class NewAccountBean.
      */
     @Test
     public void testSetUserName() {
@@ -62,8 +63,8 @@ public class LoginBeanTest {
         System.out.println("-----------------------");
         
         String userName = "john";
-        LoginBean instance = new LoginBean();
-        instance.setUserName(userName);       
+        NewAccountBean instance = new NewAccountBean();
+        instance.setUserName(userName);
         System.out.println("testSetUserName success case");
         try{
             assertEquals(userName, instance.getUserName());
@@ -88,14 +89,14 @@ public class LoginBeanTest {
     }
 
     /**
-     * Test of getPassword method, of class LoginBean.
+     * Test of getPassword method, of class NewAccountBean.
      */
     @Test
     public void testGetPassword() {
         System.out.println("getPassword test");
         System.out.println("-----------------------");
-        LoginBean instance = new LoginBean();
         
+        NewAccountBean instance = new NewAccountBean();
         System.out.println("testGetPassword success case");
         String expResult = "password1";
         instance.setPassword("password1");
@@ -124,15 +125,15 @@ public class LoginBeanTest {
     }
 
     /**
-     * Test of setPassword method, of class LoginBean.
+     * Test of setPassword method, of class NewAccountBean.
      */
     @Test
     public void testSetPassword() {
         System.out.println("setPassword test");
         System.out.println("-----------------------");
         String password = "pass1!#";
-        LoginBean instance = new LoginBean();
-        
+        NewAccountBean instance = new NewAccountBean();
+        instance.setPassword(password);
         System.out.println("testSetPassword success case");
         instance.setPassword(password);
         try{
@@ -157,41 +158,40 @@ public class LoginBeanTest {
     }
 
     /**
-     * Test of validateUserLogin method, of class LoginBean.
+     * Test of addNewUser method, of class NewAccountBean.
      */
     @Test
-    public void testValidateUserLogin() throws Exception {
-        System.out.println("validateUserLogin test");
-        System.out.println("--------------------------");
-        LoginBean instance = new LoginBean();
-        
-        System.out.println("validateUserLogin success case");
-        String expResult = "success";
-        instance.setUserName("tester3");
+    public void testAddNewUser() throws Exception {
+        System.out.println("addNewUser test");
+        System.out.println("-----------------------");
+        NewAccountBean instance = new NewAccountBean();
+               
+        System.out.println("testAddNewUser success case");
+        String expResult = "successfulAccount";
+        instance.setUserName("testerX");
         instance.setPassword("password");
-        String result = instance.validateUserLogin();
+        String result = instance.addNewUser();      
         try{
             assertEquals(expResult, result);
-            System.out.println("     " + result + " case passed");
+            System.out.println("     " + instance.getUserName() + ", " + instance.getPassword() + " passed");
         } catch (AssertionError e) {
-            System.out.println("     " + result + " case failed");
+            System.out.println("     " + instance.getUserName() + ", " + instance.getPassword() + " failed");
             throw e;
         }
         
-        
-        System.out.println("validateUserLogin failure case");
-        expResult = "failure";
-        instance.setUserName("tester3");
-        instance.setPassword("pass");
-        result = instance.validateUserLogin();
-        assertEquals(expResult, result);
+        System.out.println("testAddNewUser failure case");
+        expResult = "failedAccount";
+        instance.setUserName("testerX");
+        instance.setPassword("password");
+         result = instance.addNewUser();      
         try{
             assertEquals(expResult, result);
-            System.out.println("     " + result + " case passed");
+            System.out.println("     " + instance.getUserName() + ", " + instance.getPassword() + " failed as expected");
         } catch (AssertionError e) {
-            System.out.println("     " + result + " case failed");
+            System.out.println("     " + instance.getUserName() + ", " + instance.getPassword() + " incorrectly passed");
             throw e;
         }
+        
         System.out.println();
     }
     
