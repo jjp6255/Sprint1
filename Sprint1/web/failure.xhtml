@@ -18,8 +18,24 @@ and open the template in the editor.
     </style>
 </h:head>
 <h:body>
-    <div id="resultErr">
-        <span id="invalidCre" class="errorText">Invalid Username or Password</span>
-    </div>
+    <h:form id="retryForm">
+        <div id="resultErr">
+            <span id="invalidCre" class="errorText">Invalid Username or Password</span>
+        </div>
+        <div id="resultErr">
+            <span id="invalidCre" class="errorText">Try again</span>
+        </div>
+        <div id="userNameDiv" class="textPlacement">
+            <h:outputLabel value="Username: " />
+            <h:inputText value="#{loginBean.userName}" />
+        </div>
+        <div id="passwordDiv" class="textPlacement">
+            <h:outputLabel value="Password: " />
+            <h:inputSecret value="#{loginBean.password}" />
+        </div>
+        <div id="submitBtn" class="textPlacement">
+            <h:commandButton value="Login" action="#{loginBean.validateUserLogin}" />
+        </div>
+    </h:form>
 </h:body>
 </html>

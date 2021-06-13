@@ -18,8 +18,52 @@ and open the template in the editor.
     </style>
 </h:head>
 <h:body>
-    <div id="result">
-        Welcome, <span id="userName"><h:outputLabel class="successText" value="#{newAccountBean.userName}" /></span>
-    </div>
+    <h:form id="newAccountForm">
+        <div id="result">
+            Welcome, <span id="userName"><h:outputLabel class="successText" value="#{newAccountBean.userName}" /></span>
+        </div>
+        <div id="space">
+            <br/>
+            <br/>
+        </div>
+        <div id="result">
+            Now, finish setting up your profile <br/>
+            <br/>
+        </div>
+        <div id="userNameDiv" class="textPlacement">
+            <h:outputLabel value="User Name: " />
+            <h:inputText value="#{updateProfileBean.userName}" />
+        </div>
+             
+        <div id="firstNameDiv" class="textPlacement">
+            <h:outputLabel value="First Name: " />
+            <h:inputText value="#{updateProfileBean.firstName}" />
+        </div>
+        <div id="lastNameDiv" class="textPlacement">
+            <h:outputLabel value="Last Name: " />
+            <h:inputText value="#{updateProfileBean.lastName}" />
+        </div>
+        <div id="emailDiv" class="textPlacement">
+            <h:outputLabel value="Email Address: " />
+            <h:inputText value="#{updateProfileBean.email}" />
+        </div>
+        <div id="zipCodeDiv" class="textPlacement">
+            <h:outputLabel value="Zip Code: " />
+            <h:inputText value="#{updateProfileBean.zipCode}" />
+        </div>
+        <div id="birthdayDiv" class="textPlacement">
+            <h:outputLabel value="Date of Birth (yyyy-mm-dd): " />
+            <h:inputText value="#{updateProfileBean.dateOfBirth}" />
+        </div>
+        <div id="incomeDiv" class="textPlacement">
+            <h:outputLabel value="Annual Income: " />
+            <h:inputText value="#{updateProfileBean.income}" />
+        </div>
+        
+        <div id="updateProfileBtn" class="textPlacement">
+            <h:commandButton value="Finish Profile" action="#{updateProfileBean.updateProfileInfo()}" />
+        </div>
+            
+    </h:form>
 </h:body>
 </html>

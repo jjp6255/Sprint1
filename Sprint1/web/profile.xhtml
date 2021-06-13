@@ -8,17 +8,16 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-    <title>My Account</title>
+    <title>My Profile</title>
     <style type="text/css">
-        .successText {
-            color: green;
+        .textPlacement {
             margin: 12px;
-            font-weight: bold;
         }
     </style>
 </h:head>
 <h:body>
-    <h:form id="successForm">
+    <h2>Profile</h2>
+    <h:form id="profileForm">
         <div id="result">
             Welcome, <span id="userName"><h:outputLabel class="successText" value="#{loginBean.userName}" /></span>
         </div>
