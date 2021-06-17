@@ -5,6 +5,8 @@
  */
 package com.jsf.login;
 
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -98,8 +100,8 @@ public class NewAccountBeanTest {
         
         NewAccountBean instance = new NewAccountBean();
         System.out.println("testGetPassword success case");
-        String expResult = "password1";
-        instance.setPassword("password1");
+        String expResult = "Password1";
+        instance.setPassword("Password1");
         String result = instance.getPassword();
         try{
             assertEquals(expResult, result);
@@ -110,7 +112,7 @@ public class NewAccountBeanTest {
         }
         
         System.out.println("testGetPassword failure case");
-        expResult = "password1";
+        expResult = "Password1";
         instance.setPassword("password");
         result = instance.getPassword();
         try{
@@ -131,13 +133,13 @@ public class NewAccountBeanTest {
     public void testSetPassword() {
         System.out.println("setPassword test");
         System.out.println("-----------------------");
-        String password = "pass1!#";
+        String password = "Password1!#";
         NewAccountBean instance = new NewAccountBean();
         instance.setPassword(password);
         System.out.println("testSetPassword success case");
         instance.setPassword(password);
         try{
-            assertEquals("pass1!#", instance.getPassword());
+            assertEquals("Password1!#", instance.getPassword());
             System.out.println("     " + instance.getPassword() + " passed");
         } catch (AssertionError e) {
             System.out.println("     " + instance.getPassword() + " failed");
@@ -147,7 +149,7 @@ public class NewAccountBeanTest {
         System.out.println("testSetPassword failure case");
         instance.setPassword("qwerty");
         try{
-            assertNotEquals("pass1!#", instance.getPassword());
+            assertNotEquals("Password1!#", instance.getPassword());
             System.out.println("     " + instance.getPassword() + " failed as expected");
         } catch (AssertionError e) {
             System.out.println("     " + instance.getPassword() + " incorrectly passed");
@@ -169,7 +171,7 @@ public class NewAccountBeanTest {
         System.out.println("testAddNewUser success case");
         String expResult = "successfulAccount";
         instance.setUserName("testerX");
-        instance.setPassword("password");
+        instance.setPassword("Password1!#");
         String result = instance.addNewUser();      
         try{
             assertEquals(expResult, result);

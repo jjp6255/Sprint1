@@ -18,9 +18,17 @@ and open the template in the editor.
     </style>
 </h:head>
 <h:body>
+    <h:form id="failedAccountForm">
     <div id="resultErr">
-        <span id="invalid" class="errorText">Could not create account</span>
-        Sorry, <span id="userName"><h:outputLabel class="errorText" value="#{newAccountBean.userName}"/></span>, is already taken
+        <span id="invalid" class="errorText">Could not create account</span><br/>
+        Sorry, <span id="userName"><h:outputLabel class="errorText" 
+                value="#{newAccountBean.userName}"/></span>, 
+                is already taken <br/>
     </div>
+    
+    <div id="retryBtn" class="textPlacement">
+            <h:commandButton value="Try Again" action="newUser.xhtml" />
+        </div>
+    </h:form>
 </h:body>
 </html>

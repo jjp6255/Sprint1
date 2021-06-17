@@ -25,11 +25,16 @@ and open the template in the editor.
             </div>
             <div id="passwordDiv" class="textPlacement">
                 <h:outputLabel value="Password: " />
-                <h:inputSecret value="#{newAccountBean.password}" />
+                <h:inputSecret value="#{newAccountBean.password}"
+                               required="true" size="20"
+                               disabled="#{newAccountBean.password}"/>
             </div>
             <div id="passwordConfirmDiv" class="textPlacement">
                 <h:outputLabel value="Re-type Password: " />
-                <h:inputSecret value="#{newAccountBean.password}" />
+                <h:inputSecret value="#{newAccountBean.password}"
+                               required="true" size="20"
+			disabled="#{newAccountBean.password}" 
+                        validator="#{newAccountBean.validatePassword}"/>
             </div>
             <div id="newActBtn" class="textPlacement">
                 <h:commandButton value="Create New Account" action="#{newAccountBean.addNewUser()}" />
