@@ -22,5 +22,5 @@ CREATE TABLE userCredential (
 
 INSERT INTO userCredential (userName, password)
        VALUES   ('tester1', 'Qwerty1!'),
-                ('tester2', 'ASDfgh2'),
-                ('tester3', 'password');
+                ('tester2', 'ASDfghjkl2'),
+                ('tester3', 'Password1');
