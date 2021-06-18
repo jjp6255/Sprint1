@@ -168,7 +168,7 @@ public class LoginBeanTest {
         System.out.println("validateUserLogin success case");
         String expResult = "success";
         instance.setUserName("tester3");
-        instance.setPassword("password");
+        instance.setPassword("Password1");
         String result = instance.validateUserLogin();
         try{
             assertEquals(expResult, result);
