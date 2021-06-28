@@ -19,7 +19,10 @@ and open the template in the editor.
     <h2>Profile</h2>
     <h:form id="profileForm">
         <div id="result">
-            Welcome, <span id="userName"><h:outputLabel class="successText" value="#{loginBean.userName}" /></span>
+            <span id="userName"><h:outputLabel class="successText" value="#{loginBean.userName}" /></span>
+        </div>
+        <div id="newBillBtn" class="textPlacement">
+                <h:commandButton value="Add Bill" action="newBill.xhtml" />
         </div>
         <div id="logoutBtn" class="textPlacement">
                 <h:commandButton value="Logout" action="index.xhtml" />

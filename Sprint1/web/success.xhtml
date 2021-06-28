@@ -22,6 +22,12 @@ and open the template in the editor.
         <div id="result">
             Welcome, <span id="userName"><h:outputLabel class="successText" value="#{loginBean.userName}" /></span>
         </div>
+        <div id="newBillBtn" class="textPlacement">
+                <h:commandButton value="Add Bill" action="newBill.xhtml" />
+        </div>
+        <div id="profileBtn" class="textPlacement">
+                <h:commandButton value="My Profile" action="profile.xhtml" />
+        </div>
         <div id="logoutBtn" class="textPlacement">
                 <h:commandButton value="Logout" action="index.xhtml" />
         </div>
