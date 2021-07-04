@@ -14,14 +14,16 @@ import com.jsf.login.LoginBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author josephpriolo
  */
-@ManagedBean @SessionScoped
+@ManagedBean(name="updateProfileBean") @SessionScoped
 public class UpdateProfileBean {
     private String userName;
     private String firstName;
@@ -89,6 +91,14 @@ public class UpdateProfileBean {
     
     public String updateProfileInfo() throws ClassNotFoundException {
         String navResult = "";
+        
+        try {
+            Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+            userName = params.get("currentUser");
+        } catch (Exception e) {
+            userName = null;
+        }
+        
         
         String query = "INSERT INTO userInfo (userName, firstName, lastName, "
                 + "email, zipcode, birthday, income) "

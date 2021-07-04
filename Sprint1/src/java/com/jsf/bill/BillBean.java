@@ -13,19 +13,35 @@ import com.jsf.connection.ConnectionBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author josephpriolo
  */
-@ManagedBean @SessionScoped
+@ManagedBean(name="billBean") @SessionScoped
 public class BillBean {
     
+    private String userName;
     private String billType;
     private float amountDue;
     private String dueDate;
+    private String accountName;
+    private Integer remainingPayments;
+    private float interestRate;
+    private boolean isRecurring;
+    
+    public String getUserName() {
+        return userName;
+    }
+ 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
     
     public String getBillType() {
         return billType;
@@ -51,10 +67,44 @@ public class BillBean {
         this.dueDate = dueDate;
     }
     
+    public String getAccountName() {
+        return accountName;
+    }
+ 
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+    
+    public Integer getRemainingPayments() {
+        return remainingPayments;
+    }
+ 
+    public void setRemainingPayments(Integer remainingPayments) {
+        this.remainingPayments = remainingPayments;
+    }
+    
+    public float getInterestRate() {
+        return interestRate;
+    }
+ 
+    public void setInterestRate(float interestRate) {
+        this.interestRate = interestRate;
+    }
+    
+    public boolean getIsRecurring() {
+        return isRecurring;
+    }
+ 
+    public void setIsRecurring(boolean isRecurring) {
+        this.isRecurring = isRecurring;
+    }
+    
     public String addNewBill() throws ClassNotFoundException {
        String navResult = "failedNewBill";
        
-       String query = "INSERT INTO bill (billType, billAmount, dueDate) VALUES (?, ?, ?)";
+       String query = "INSERT INTO bill (userName, billType, billName, "
+               + "billAmount, dueDate, lengthOfLoan, interestRate, isRecurring) "
+               + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = null;
         
         Connection cn = ConnectionBean.databaseConnect();
@@ -63,9 +113,40 @@ public class BillBean {
         {
             try {
                 ps = cn.prepareStatement(query);
-                ps.setString(1, billType);
-                ps.setFloat(2, amountDue);
-                ps.setString(3, dueDate);
+                
+                //cannot be null
+                ps.setString(1, userName);
+              
+                //cannot be null
+                ps.setString(2, billType);
+                      
+                if (!accountName.isEmpty()) {
+                    ps.setString(3, accountName);
+                } else {
+                    ps.setNull(3, Types.NULL);
+                }
+                
+                //will not be null
+                ps.setFloat(4, amountDue);
+                
+                if (!dueDate.isEmpty()) {
+                    ps.setString(5, dueDate);
+                } else {
+                    ps.setNull(5, Types.NULL);
+                }
+               
+                if (remainingPayments != null) {
+                    ps.setInt(6, remainingPayments);
+                } else {
+                    ps.setNull(6, Types.NULL);
+                }
+                
+                //will not be null
+                ps.setFloat(7, interestRate);
+                
+                //will not be null
+                ps.setBoolean(8, isRecurring);
+                    
                 int row = 0;
                 row = ps.executeUpdate();
                 if (row == 1)
@@ -86,4 +167,30 @@ public class BillBean {
        return navResult;
     }
     
+    public String determineType() {
+               
+        try {
+            Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap(); 
+            userName = params.get("currentUser");
+        }
+        catch (Exception e){
+            userName = null;
+        }        
+
+        String type = "";
+        
+        if (billType.matches("Credit Card")) {
+            type = "newCreditCard";
+        } else if (billType.matches("Loan")) {
+            type = "newLoan";
+        } else if (billType.matches("Utility")) {
+            type = "newUtility";
+        } else if (billType.matches("Other")) {
+            type = "newOther";
+        } else {
+            type = "failedNewBill";
+        }
+        
+        return type;
+    }
 }

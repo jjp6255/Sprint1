@@ -15,11 +15,17 @@ DROP TABLE IF EXISTS bill;
 
 CREATE TABLE bill(
        billID integer not null AUTO_INCREMENT PRIMARY KEY,
+       userName VARCHAR (50) not null,
        billType VARCHAR (50) not null,
-       billAmount float not null,
-       dueDate DATE not null
+       billName VARCHAR (75),
+       billAmount float,
+       dueDate DATE,
+       lengthOfLoan INTEGER,
+       interestRate float,
+       isRecurring boolean,
+       FOREIGN KEY (userName) REFERENCES userCredential(userName)
 );
 
 
-INSERT INTO bill (billType, billAmount, dueDate)
-       VALUES   ('Credit Card', 120.50, '2021-07-01');
+INSERT INTO bill (userName, billType, billAmount, dueDate)
+       VALUES   ('tester3', 'Credit Card', 120.50, '2021-07-01');

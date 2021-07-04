@@ -21,7 +21,8 @@ CREATE TABLE userInfo(
        zipcode VARCHAR (10),
        birthday DATE,
        income integer,
-       PRIMARY KEY (username)
+       PRIMARY KEY (username),
+       FOREIGN KEY (userName) REFERENCES userCredential (userName)
 );
 
 

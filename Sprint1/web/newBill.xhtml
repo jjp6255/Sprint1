@@ -21,7 +21,7 @@ and open the template in the editor.
         <h:form id="newBillForm">
             
             <div id="typeDiv" class="textPlacement">
-                <h:outputLabel value="Bill Type* " />
+                <h:outputLabel value="Bill Type " />
                 <h:selectOneRadio value="#{billBean.billType}"
                                   required = "true"
                                   requiredMessage ="You must select a bill type first"
@@ -34,18 +34,15 @@ and open the template in the editor.
                 
             </div> 
             
-            <div id="amountDiv" class="textPlacement">
-                <h:outputLabel value="Current Amount Due " />
-                <h:inputText value="#{billBean.amountDue}" />
+            <div id="nameDiv" class="textPlacement">
+                <h:outputLabel value="Account Nickname " />
+                <h:inputText value="#{billBean.accountName}" />
             </div>
             
-            <div id="dueDateDiv" class="textPlacement">
-                <h:outputLabel value="Due Date (yyyy-mm-dd) " />
-                <h:inputText value="#{billBean.dueDate}" />
-            </div>
-            
-            <div id="newActBtn" class="textPlacement">
-                <h:commandButton value="Add" action="#{billBean.addNewBill()}" />
+            <div id="nextBtn" class="textPlacement">
+                <h:commandButton value="Next" action="#{billBean.determineType()}">
+                    <f:param name="currentUser" value="#{loginBean.userName}" />
+                </h:commandButton>
             </div>
             
         </h:form>
