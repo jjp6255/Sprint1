@@ -6,7 +6,8 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html">
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
     <title>My Profile</title>
     <style type="text/css">
@@ -16,11 +17,22 @@ and open the template in the editor.
     </style>
 </h:head>
 <h:body>
-    <h2>Profile</h2>
+    <h2>My Bills</h2>
     <h:form id="profileForm">
         <div id="result">
             <span id="userName"><h:outputLabel class="successText" value="#{loginBean.userName}" /></span>
         </div>
+        
+        <h2>My Bills</h2>
+        <h:dataTable value="#{billTableBean.getBillList()}" var="bill" border="1">
+            <h:column>
+                
+                #{bill.billType}
+            </h:column>
+            
+	</h:dataTable>
+        
+        
         <div id="newBillBtn" class="textPlacement">
                 <h:commandButton value="Add Bill" action="newBill.xhtml" />
         </div>

@@ -14,6 +14,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -192,5 +195,44 @@ public class BillBean {
         }
         
         return type;
+    }
+    
+    
+    public List<BillBean> getBillList()throws SQLException, ClassNotFoundException{
+
+        List<BillBean> bills = new ArrayList<BillBean>();
+
+        
+        Connection cn = ConnectionBean.databaseConnect();
+
+        if(cn == null) {
+                throw new SQLException("Can't get database connection");
+        }
+
+        PreparedStatement ps = cn.prepareStatement("SELECT billName from bill");
+
+        try{
+            //get data from database        
+            ResultSet result = ps.executeQuery();
+            while (result.next()){
+                BillBean bill = new BillBean();
+                bill.setBillType(result.getString("billName"));
+                //billRow.setMaxActiveUsers(result.getString("MaxActiveUsers"));
+                bills.add(bill);
+            }
+        }
+        catch(Exception e1){
+            // Log the exception.
+        }
+        finally{
+            try{
+                ps.close();
+                cn.close();
+            }
+            catch(Exception e2){
+                // Log the exception.
+            }
+        }
+        return bills; 
     }
 }
