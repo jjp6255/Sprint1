@@ -7,6 +7,7 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
     <title>My Profile</title>
@@ -23,14 +24,15 @@ and open the template in the editor.
             <span id="userName"><h:outputLabel class="successText" value="#{loginBean.userName}" /></span>
         </div>
         
-        <h2>My Bills</h2>
-        <h:dataTable value="#{billTableBean.getBillList()}" var="bill" border="1">
-            <h:column>
-                
-                #{bill.billType}
-            </h:column>
-            
-	</h:dataTable>
+        <h2>Bills</h2>
+       
+        <h:outputLabel value="Bill"/>&#160; &#160;&#160;&#160;<h:outputLabel value="Amount"/>
+        &#160; &#160;&#160;&#160;<h:outputLabel value="Total Due"/>
+        <br/> <br/>
+        <ui:repeat value="#{billBean.getBillList()}" var="value">
+            #{value.billType}  &#160; &#160;&#160;&#160;  #{value.amountDue}
+              &#160; &#160;&#160;&#160;  #{value.dueDate}<br />
+        </ui:repeat>
         
         
         <div id="newBillBtn" class="textPlacement">

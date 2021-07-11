@@ -5,6 +5,7 @@
  */
 package com.jsf.bill;
 
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -693,6 +694,42 @@ public class BillBeanTest {
             System.out.println("     " + instance.getUserName() + " failed as expected");
         } catch (AssertionError e) {
             System.out.println("     " + instance.getUserName() + " incorrectly passed");
+            throw e;
+        }
+        
+        System.out.println();
+    }
+
+    /**
+     * Test of getBillList method, of class BillBean.
+     */
+    @Test
+    public void testGetBillList() throws Exception {
+        System.out.println("getBillList test");
+        System.out.println("-----------------------");
+        
+        BillBean instance = new BillBean();
+        List<BillBean> expResult = null;
+        System.out.println("testGetBillList success case");       
+        instance.setUserName("tester6");
+        List<BillBean> result = instance.getBillList();
+        
+        try{
+            assertNotEquals(expResult, result);
+            System.out.println("     " + result + " passed");
+        } catch (AssertionError e) {
+            System.out.println("     " + result + " failed");
+            throw e;
+        }
+        
+        System.out.println("testGetBillList failure case");
+        instance.setUserName("test");
+        result = instance.getBillList();
+        try{
+            assertNotEquals(expResult, result);
+            System.out.println("     " + result + " failed as expected");
+        } catch (AssertionError e) {
+            System.out.println("     " + result + " incorrectly passed");
             throw e;
         }
         

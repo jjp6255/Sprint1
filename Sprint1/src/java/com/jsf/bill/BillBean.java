@@ -201,7 +201,6 @@ public class BillBean {
     public List<BillBean> getBillList()throws SQLException, ClassNotFoundException{
 
         List<BillBean> bills = new ArrayList<BillBean>();
-
         
         Connection cn = ConnectionBean.databaseConnect();
 
@@ -209,7 +208,7 @@ public class BillBean {
                 throw new SQLException("Can't get database connection");
         }
 
-        PreparedStatement ps = cn.prepareStatement("SELECT billName from bill");
+        PreparedStatement ps = cn.prepareStatement("SELECT * from bill where userName = '" + this.userName + "'");
 
         try{
             //get data from database        
@@ -217,7 +216,8 @@ public class BillBean {
             while (result.next()){
                 BillBean bill = new BillBean();
                 bill.setBillType(result.getString("billName"));
-                //billRow.setMaxActiveUsers(result.getString("MaxActiveUsers"));
+                bill.setAmountDue(result.getFloat("billAmount"));
+                bill.setDueDate((String)result.getString("dueDate"));
                 bills.add(bill);
             }
         }
