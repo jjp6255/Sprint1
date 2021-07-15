@@ -34,7 +34,7 @@ and open the template in the editor.
                 <h:outputLabel value="Is this a recurring bill? " />
                 <h:selectOneRadio value="#{billBean.isRecurring}"
                                   required = "true"
-                                  requiredMessage ="You must select an option"
+                                  requiredMessage ="You must indicate one-time or recurring"
                                   >
                     <f:selectItem itemValue="#{true}" itemLabel="Yes" />
                     <f:selectItem itemValue="#{false}" itemLabel="No" /> 
