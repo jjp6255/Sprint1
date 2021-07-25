@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Estimate New Loan</title>
+        <style type="text/css">
+        .textPlacement {
+            margin: 12px;
+        }
+        </style>
+    </h:head>
+    <h:body>
+        <h2>Get An Estimate</h2>
+        <h:form id="newEstimateForm">
+            
+            <div id="amountDiv" class="textPlacement">
+                <h:outputLabel value="Loan Amount " />
+                <h:inputText value="#{loanBean.loanAmount}" />
+            </div>
+            
+            <div id="lengthDiv" class="textPlacement">
+                <h:outputLabel value="Length (months) " />
+                <h:inputText value="#{loanBean.loanLength}" />
+            </div>
+            
+            <div id="intDiv" class="textPlacement">
+                <h:outputLabel value="Interest Rate " />
+                <h:inputText value="#{loanBean.interestRate}" />
+            </div>
+            
+            <div id="calcBtn" class="textPlacement">
+                <h:commandButton value="Calculate" action="#{loanBean.calculatePayment()}"/>
+            </div>
+            
+            <div id="paymentDiv" class="textPlacement">
+                <h:outputLabel value="Monthly Payment  $" />
+                <h:outputText value="#{loanBean.monthlyPayment}" />
+            </div>
+            
+            <div id="totalyIntDiv" class="textPlacement">
+                <h:outputLabel value="Total Interest  $" />
+                <h:outputText value="#{loanBean.totalInterest}" />
+            </div>
+            
+        </h:form>
+    </h:body>
+</html>
