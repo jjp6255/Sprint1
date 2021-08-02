@@ -19,17 +19,17 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean(name="loanBean") @SessionScoped
 public class LoanBean {
-    private float loanAmount;
+    private Double loanAmount;
     private Integer loanLength;
-    private float interestRate;
+    private Double interestRate;
     private String monthlyPayment;
     private String totalInterest;
     
-    public float getLoanAmount() {
+    public Double getLoanAmount() {
         return loanAmount;
     }
  
-    public void setLoanAmount(float loanAmount) {
+    public void setLoanAmount(Double loanAmount) {
         this.loanAmount = loanAmount;
     }
     
@@ -41,11 +41,11 @@ public class LoanBean {
         this.loanLength = loanLength;
     }
     
-    public float getInterestRate() {
+    public Double getInterestRate() {
         return interestRate;
     }
  
-    public void setInterestRate(float interestRate) {
+    public void setInterestRate(Double interestRate) {
         this.interestRate = interestRate;
     }
     

@@ -22,17 +22,26 @@ and open the template in the editor.
             
             <div id="amountDiv" class="textPlacement">
                 <h:outputLabel value="Loan Amount " />
-                <h:inputText value="#{loanBean.loanAmount}" />
+                <h:inputText value="#{loanBean.loanAmount}"
+                             required = "true"
+                             requiredMessage ="You must enter an amount">
+                </h:inputText>
             </div>
             
             <div id="lengthDiv" class="textPlacement">
                 <h:outputLabel value="Length (months) " />
-                <h:inputText value="#{loanBean.loanLength}" />
+                <h:inputText value="#{loanBean.loanLength}"
+                             required = "true"
+                             requiredMessage ="You must enter a length">
+                </h:inputText>
             </div>
             
             <div id="intDiv" class="textPlacement">
                 <h:outputLabel value="Interest Rate " />
-                <h:inputText value="#{loanBean.interestRate}" />
+                <h:inputText value="#{loanBean.interestRate}"
+                             required = "true"
+                             requiredMessage ="You must enter a rate">
+                </h:inputText>
             </div>
             
             <div id="calcBtn" class="textPlacement">

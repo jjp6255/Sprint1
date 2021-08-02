@@ -27,9 +27,9 @@ public class LoanBeanTest {
         LoanBean instance = new LoanBean();
         
         System.out.println("testGetLoanAmount success case");
-        float expResult = (float) 10000;
-        instance.setLoanAmount((float) 10000);
-        float result = instance.getLoanAmount();
+        Double expResult = (Double) 10000.0;
+        instance.setLoanAmount((Double) 10000.0);
+        Double result = instance.getLoanAmount();
         try{
             assertEquals(expResult, result, 0);
             System.out.println("     " + result + " passed");
@@ -39,8 +39,8 @@ public class LoanBeanTest {
         }
         
         System.out.println("testGetLoanAmount failure case");
-        expResult = (float) 10000;
-        instance.setLoanAmount((float) 1000);
+        expResult = (Double) 10000.0;
+        instance.setLoanAmount((Double) 1000.0);
         result = instance.getLoanAmount();
         try{
             assertNotEquals(expResult, result);
@@ -61,7 +61,7 @@ public class LoanBeanTest {
         System.out.println("setLoanAmount test");
         System.out.println("-----------------------");
         
-        float loanAmount = (float) 5000;
+        Double loanAmount = (Double) 5000.0;
         LoanBean instance = new LoanBean();
         instance.setLoanAmount(loanAmount);       
         System.out.println("testSetLoanAmount success case");
@@ -73,11 +73,11 @@ public class LoanBeanTest {
             throw e;
         }
         
-        loanAmount = (float) 5200;
+        loanAmount = (Double) 5200.0;
         instance.setLoanAmount(loanAmount);
         System.out.println("testSetLoanAmount failure case");
         try{
-            assertNotEquals((float)54.21, instance.getLoanAmount());
+            assertNotEquals((Double)54.21, instance.getLoanAmount());
             System.out.println("     " + instance.getLoanAmount() + " failed as expected");
         } catch (AssertionError e) {
             System.out.println("     " + instance.getLoanAmount() + " incorrectly passed");
@@ -167,9 +167,9 @@ public class LoanBeanTest {
         LoanBean instance = new LoanBean();
         
         System.out.println("testGetInterestRate success case");
-        float expResult = (float) 3.45;
-        instance.setInterestRate((float) 3.45);
-        float result = instance.getInterestRate();
+        Double expResult = (Double) 3.45;
+        instance.setInterestRate((Double) 3.45);
+        Double result = instance.getInterestRate();
         try{
             assertEquals(expResult, result, 0);
             System.out.println("     " + result + " passed");
@@ -179,8 +179,8 @@ public class LoanBeanTest {
         }
         
         System.out.println("testGetInterestRate failure case");
-        expResult = (float) 3.45;
-        instance.setInterestRate((float) 2.45);
+        expResult = (Double) 3.45;
+        instance.setInterestRate((Double) 2.45);
         result = instance.getInterestRate();
         try{
             assertNotEquals(expResult, result);
@@ -201,7 +201,7 @@ public class LoanBeanTest {
         System.out.println("setInterestRate test");
         System.out.println("-----------------------");
         
-        float intRate = (float) 3.21;
+        Double intRate = (Double) 3.21;
         LoanBean instance = new LoanBean();
         instance.setInterestRate(intRate);       
         System.out.println("testSetInterestRate success case");
@@ -213,11 +213,11 @@ public class LoanBeanTest {
             throw e;
         }
         
-        intRate = (float) 3.21;
+        intRate = (Double) 3.21;
         instance.setInterestRate(intRate);
         System.out.println("testSetInterestRate failure case");
         try{
-            assertNotEquals((float)4.21, instance.getInterestRate());
+            assertNotEquals((Double)4.21, instance.getInterestRate());
             System.out.println("     " + instance.getInterestRate() + " failed as expected");
         } catch (AssertionError e) {
             System.out.println("     " + instance.getInterestRate() + " incorrectly passed");
@@ -376,8 +376,8 @@ public class LoanBeanTest {
         System.out.println("-----------------------");
         
         LoanBean instance = new LoanBean();
-        instance.setLoanAmount(5000);
-        instance.setInterestRate((float)4.5);
+        instance.setLoanAmount(5000.0);
+        instance.setInterestRate(4.5);
         instance.setLoanLength(60);
         instance.calculatePayment();
         
@@ -391,8 +391,8 @@ public class LoanBeanTest {
         }
         
         System.out.println("testCalculatePayment failure case");
-        instance.setLoanAmount(500);
-        instance.setInterestRate((float)4.5);
+        instance.setLoanAmount(500.0);
+        instance.setInterestRate((Double)4.5);
         instance.setLoanLength(60);
         instance.calculatePayment();
         try{
